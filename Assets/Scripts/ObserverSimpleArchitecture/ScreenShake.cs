@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ScreenShake : MonoBehaviour
 {
-    [SerializeField] int ScreenShakeFrames = 100;
-    [SerializeField] float intensity = .01f, frequency;
+    [SerializeField] private int _screenShakeFrames = 10;
+    [SerializeField] private float _intensity = 2;
+    [SerializeField] private float _frequency = 10;
     [SerializeField] private GameManager _gameManager;
+
     private void Start()
     {
         _gameManager.gameLost += ShakeScreen;
@@ -22,9 +24,9 @@ public class ScreenShake : MonoBehaviour
     {
         var originalposition = transform.position;
 
-        for(int i = 0; i < ScreenShakeFrames ; i++)
+        for(int i = 0; i < _screenShakeFrames ; i++)
         {
-            transform.position = originalposition + ((100 - i) * intensity * Mathf.Cos(i * frequency) * Vector3.right / ScreenShakeFrames);
+            transform.position = originalposition + ((100 - i) * _intensity * Mathf.Cos(i * _frequency) * Vector3.right / _screenShakeFrames);
             yield return null;
         }
 

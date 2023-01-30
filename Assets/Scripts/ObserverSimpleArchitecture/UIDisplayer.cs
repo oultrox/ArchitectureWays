@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIDisplay : MonoBehaviour
+public class UIDisplayer : MonoBehaviour
 {
     private Text _text;
     [SerializeField] private GameManager _gameManager;

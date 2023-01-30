@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject _enemyPrefab;
     [SerializeField] private GameManager _gameManager;
-    Coroutine spawnroutine;
+    private Coroutine _spawnroutine;
 
     private void Start()
     {
@@ -16,14 +16,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void StartSpawning()
     {
-        spawnroutine = StartCoroutine(SpawnEnemies());
+        _spawnroutine = StartCoroutine(SpawnEnemies());
     }
 
     private void StopSpawning()
     {
-        if (spawnroutine != null)
+        if (_spawnroutine != null)
         {
-            StopCoroutine(spawnroutine);
+            StopCoroutine(_spawnroutine);
         }
     }
 

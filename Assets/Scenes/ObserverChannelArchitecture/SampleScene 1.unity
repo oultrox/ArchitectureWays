@@ -1075,9 +1075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004d408247db11941ac21c44d3b633a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScreenShakeFrames: 10
-  intensity: 0.02
-  frequency: 10
+  _screenShakeFrames: 60
+  _intensity: 1
+  _frequency: 10
   _gameManager: {fileID: 1282143756}
 --- !u!1 &770548073
 GameObject:
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f35c25d883443a4d826e8356b427cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  _speed: 20
   _gameManager: {fileID: 1282143756}
 --- !u!1 &1164018302
 GameObject:

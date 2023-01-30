@@ -5,18 +5,18 @@ public class GameManager : MonoBehaviour
 {
 
     public event Action gameStarted, gameLost, scoreIncremented;
-    bool isPlaying = false;
+    private bool _isMatchActive = false;
 
     private void Update()
     {
-        if (isPlaying == true)
+        if (_isMatchActive == true)
         {
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            isPlaying = true;
+            _isMatchActive = true;
             StartGame();
         }
     }
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseGame()
     {
-        isPlaying = false;
+        _isMatchActive = false;
         gameLost?.Invoke();
     }
 

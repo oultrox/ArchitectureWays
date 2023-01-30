@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    [SerializeField] ParticleSystem ps;
+    [SerializeField] ParticleSystem _particleSystem;
     private GameManager _gameManager;
+    
     void Start()
     {
         _gameManager = FindObjectOfType<GameManager>();
@@ -20,7 +21,7 @@ public class enemy : MonoBehaviour
     void SelfDestruct()
     {
         _gameManager.gameLost -= SelfDestruct;
-        Instantiate(ps, transform.position, Quaternion.identity);
+        Instantiate(_particleSystem, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

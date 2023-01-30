@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float speed = 100;
+    [SerializeField] float _speed = 100;
     [SerializeField] private GameManager _gameManager;
 
     private void OnCollisionEnter(Collision collision)
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     {
         if (transform.position.x > -6f)
         {
-            transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+            transform.position -= new Vector3(_speed * Time.deltaTime, 0, 0);
         }
     }
 
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     {
         if (transform.position.x < 6f)
         {
-            transform.position = transform.position +  new Vector3(speed * Time.deltaTime, 0, 0);
+            transform.position = transform.position +  new Vector3(_speed * Time.deltaTime, 0, 0);
         }
     }
 }

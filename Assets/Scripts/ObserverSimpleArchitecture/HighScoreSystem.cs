@@ -18,9 +18,9 @@ public class HighScoreSystem : MonoBehaviour
 
     void CheckForHighScore()
     {
-        if( scoreSystem.score > highscore)
+        if( scoreSystem.Score > highscore)
         {
-            highscore = scoreSystem.score;
+            highscore = scoreSystem.Score;
             text.text = "High Score: " + highscore.ToString();
         }
     }
