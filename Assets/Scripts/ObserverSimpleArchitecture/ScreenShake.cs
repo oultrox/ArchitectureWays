@@ -7,11 +7,10 @@ public class ScreenShake : MonoBehaviour
     [SerializeField] private int _screenShakeFrames = 10;
     [SerializeField] private float _intensity = 2;
     [SerializeField] private float _frequency = 10;
-    [SerializeField] private GameManager _gameManager;
 
     private void Start()
     {
-        _gameManager.gameLost += ShakeScreen;
+        GameManager.GameLost += ShakeScreen;
     }
 
     void ShakeScreen()

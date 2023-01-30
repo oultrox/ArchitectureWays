@@ -4,7 +4,7 @@ using System; //IMPORTANT
 public class GameManager : MonoBehaviour
 {
 
-    public event Action gameStarted, gameLost, scoreIncremented;
+    public static event Action GameStarted, GameLost, ScoreIncremented;
     private bool _isMatchActive = false;
 
     private void Update()
@@ -23,17 +23,17 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        gameStarted?.Invoke();
+        GameStarted?.Invoke();
     }
 
     public void LoseGame()
     {
         _isMatchActive = false;
-        gameLost?.Invoke();
+        GameLost?.Invoke();
     }
 
     public void IncrementScore()
     {
-        scoreIncremented?.Invoke();
+        ScoreIncremented?.Invoke();
     }
 }

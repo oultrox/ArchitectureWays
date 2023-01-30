@@ -5,13 +5,12 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject _enemyPrefab;
-    [SerializeField] private GameManager _gameManager;
     private Coroutine _spawnroutine;
 
     private void Start()
     {
-        _gameManager.gameStarted += StartSpawning;
-        _gameManager.gameLost += StopSpawning;
+        GameManager.GameStarted += StartSpawning;
+        GameManager.GameLost += StopSpawning;
     }
 
     private void StartSpawning()

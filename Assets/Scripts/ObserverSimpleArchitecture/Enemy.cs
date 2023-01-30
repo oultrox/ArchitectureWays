@@ -5,12 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] ParticleSystem _particleSystem;
-    private GameManager _gameManager;
     
     void Start()
     {
-        _gameManager = FindObjectOfType<GameManager>();
-        _gameManager.gameLost += SelfDestruct;
+        GameManager.GameLost += SelfDestruct;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -20,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     void SelfDestruct()
     {
-        _gameManager.gameLost -= SelfDestruct;
+        GameManager.GameLost -= SelfDestruct;
         Instantiate(_particleSystem, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

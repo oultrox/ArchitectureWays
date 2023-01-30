@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class UIDisplayer : MonoBehaviour
 {
     private Text _text;
-    [SerializeField] private GameManager _gameManager;
 
     void Start()
     {
         _text = GetComponent<Text>();
-        _gameManager.gameStarted += SetStartText;
-        _gameManager.gameLost += SetLostText;
+        GameManager.GameStarted += SetStartText;
+        GameManager.GameLost += SetLostText;
     }
 
     void SetStartText()

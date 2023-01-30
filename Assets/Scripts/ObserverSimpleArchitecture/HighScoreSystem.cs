@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HighScoreSystem : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
     [SerializeField] private ScoreSystem scoreSystem;
     private int highscore = 0;
     private Text text;
@@ -13,7 +12,7 @@ public class HighScoreSystem : MonoBehaviour
     void Start()
     {
         text = GetComponent<Text>();
-        _gameManager.gameLost += CheckForHighScore;
+        GameManager.GameLost += CheckForHighScore;
     }
 
     void CheckForHighScore()

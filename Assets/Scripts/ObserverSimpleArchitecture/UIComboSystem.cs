@@ -6,14 +6,13 @@ using UnityEngine.UI;
 
 public class UIComboSystem : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
     private Text _text;
 
     void Start()
     {
         _text = GetComponent<Text>();
         _text.text = "";
-        _gameManager.scoreIncremented += ComboUp;
+        GameManager.ScoreIncremented += ComboUp;
     }
 
     private void ComboUp()

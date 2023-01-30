@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ScoreSystem : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
     private Text _text;
 
     public int Score { get; private set;} = 0;
@@ -13,8 +12,8 @@ public class ScoreSystem : MonoBehaviour
     void Start()
     {
         _text = GetComponent<Text>();
-        _gameManager.scoreIncremented += IncrementScore;
-        _gameManager.gameStarted += ResetScore;
+        GameManager.ScoreIncremented += IncrementScore;
+        GameManager.GameStarted += ResetScore;
     }
 
     void ResetScore()
