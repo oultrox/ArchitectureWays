@@ -5,7 +5,8 @@ using UnityEngine.Events;
 public class VoidEventChannelSO : ScriptableObject
 {
     public UnityAction OnEventRaised;
-
+    [SerializeField] private float _health;
+    [SerializeField] private float _damage;
     public void RaiseEvent()
     {
         if(OnEventRaised == null)
