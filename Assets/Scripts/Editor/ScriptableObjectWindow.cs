@@ -1,13 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
 
-// TODO: Make a dropdown box for showing the different types of ScriptableObject Classes the project has 
-// and from there grab the findAsset code instruction to grab the necessary SO type.
 public class ScriptableObjectWindow : EditorWindow
 {
     private List<string> _directories;
@@ -15,6 +11,7 @@ public class ScriptableObjectWindow : EditorWindow
     private Vector2 _scrollPos;
     private string[] _guids = new string[0];
     private int _selectedIndex = -1;
+    private GUIStyle _customLabelStyle = new GUIStyle(EditorStyles.label);
 
     [MenuItem("Window/Scriptable Object Organizer")]
     static void Init()
@@ -40,7 +37,8 @@ public class ScriptableObjectWindow : EditorWindow
 
         EditorGUILayout.EndHorizontal();
     }
-    GUIStyle customLabelStyle = new GUIStyle(EditorStyles.label);
+
+    
     private void DisplayScriptableObjectInspector()
     {
         if (_selectedIndex >= 0 && _selectedIndex < _guids.Length)
@@ -48,8 +46,8 @@ public class ScriptableObjectWindow : EditorWindow
             string assetPath = AssetDatabase.GUIDToAssetPath(_guids[_selectedIndex]);
             ScriptableObject obj = AssetDatabase.LoadAssetAtPath<ScriptableObject>(assetPath);
 
-            customLabelStyle.fontSize = 20;
-            GUILayout.Label(obj.name, customLabelStyle, GUILayout.Height(40));
+            _customLabelStyle.fontSize = 20;
+            GUILayout.Label(obj.name, _customLabelStyle, GUILayout.Height(40));
 
             
             Editor scriptableObjectEditor = Editor.CreateEditor(obj);
@@ -60,20 +58,20 @@ public class ScriptableObjectWindow : EditorWindow
 
     private void DisplayScriptableObjectsList()
     {
-        customLabelStyle.fontSize = 15;
+        _customLabelStyle.fontSize = 15;
         string[] directoriesArray = _directories.ToArray();
-        GUILayout.Label("Select a folder:", customLabelStyle);
+        GUILayout.Label("Select a folder:", _customLabelStyle);
         _selectedDirectoryIndex = EditorGUILayout.Popup(_selectedDirectoryIndex, directoriesArray);
 
         
-        GUILayout.Label(Path.GetFileName(directoriesArray[_selectedDirectoryIndex]), customLabelStyle);
+        GUILayout.Label(Path.GetFileName(directoriesArray[_selectedDirectoryIndex]), _customLabelStyle);
 
         if (GUILayout.Button("Load Scriptable Objects"))
         {
-            customLabelStyle.fontSize = 13;
+            _customLabelStyle.fontSize = 13;
             
             string selectedDirectory = _directories[_selectedDirectoryIndex];
-            _guids = AssetDatabase.FindAssets("t:VoidEventChannelSO", new[] { selectedDirectory });
+            _guids = AssetDatabase.FindAssets("t:ScriptableObject", new[] { selectedDirectory });
             // Load your ScriptableObjects here using the selected path
             Debug.Log(_guids.Length);
             foreach (string guid in _guids)
@@ -83,7 +81,7 @@ public class ScriptableObjectWindow : EditorWindow
                 Debug.Log(obj);
             }
         }
-        GUILayout.Label("SO List", customLabelStyle);
+        GUILayout.Label("SO List", _customLabelStyle);
         _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 
         int index = 0;
